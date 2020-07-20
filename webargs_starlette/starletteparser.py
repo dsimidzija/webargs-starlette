@@ -120,6 +120,11 @@ class StarletteParser(AsyncParser):
             if isinstance(arg, Request):
                 req = arg
                 break
+        if req is None:
+            for arg in kwargs.values():
+                if isinstance(arg, Request):
+                    req = arg
+                    break
         assert isinstance(req, Request), "Request argument not found for handler"
         return req
 
